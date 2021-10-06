@@ -6,7 +6,7 @@ The repository is for the paper: **Multi-Agent Constrained Policy Optimisation**
 
 ## Environments Supported:
 
-- [Safety Multi-Agent Mujoco](https://github.com/Anonymous-ICLR2022/Safety-Multi-Agent-Mujoco)
+- [Safety Multi-Agent Mujoco](https://github.com/chauncygu/Safe-Multi-Agent-Mujoco)
 
 
 
@@ -34,7 +34,7 @@ pip install -e .
 
 
 - Install mujoco accoring to [mujoco-py](https://github.com/openai/mujoco-py) and [MuJoCo website](https://www.roboti.us/license.html).
-- clone [Safety Multi-Agent Mujoco](https://github.com/Anonymous-ICLR2022/Safety-Multi-Agent-Mujoco) to the env path (in this repository, have set the path).
+- clone [Safety Multi-Agent Mujoco](https://github.com/chauncygu/Safe-Multi-Agent-Mujoco) to the env path (in this repository, have set the path).
 
 ``` Bash
 LD_LIBRARY_PATH=${HOME}/.mujoco/mujoco200/bin;
