@@ -55,13 +55,14 @@ chmod +x ./train_mujoco.sh
 ## 3. Results
 
 <div align=center>
-<img src="https://github.com/anybodyany/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/New_ManyAgent_Ant_results.png" width="850"/>    
-<img src="https://github.com/anybodyany/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/New_Ant_results.png" width="850"/> 
-<img src="https://github.com/anybodyany/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/New_HalfCheetah_results.png" width="850"/>
+<img src="https://github.com/chauncygu/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/New_ManyAgent_Ant_results.png" width="850"/>    
+<img src="https://github.com/chauncygu/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/New_Ant_results.png" width="850"/> 
+<img src="https://github.com/chauncygu/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/New_HalfCheetah_results.png" width="850"/>
 </div>
     
 <div align=center>
-<center style="color:#000000;text-decoration:underline">Figure.1 Cost and reward performance comparison between our MACPO & MAPPO-Lagrangian and SOTA MARL algorithms. The universal safety constraining values are: 15 for ManyAgent Ant, 0.2 for Ant, and 5 for HalfCheetah. The results are averaged over 3 random seeds. Our methods learn safety constraints, and score reward on <a href="https://arxiv.org/abs/2103.01955">MAPPO</a> and <a href="https://arxiv.org/abs/2011.09533)">IPPO</a> level.</center>
+<center style="color:#000000;text-decoration:underline">
+    Performance comparisons on tasks of Safe ManyAgent Ant, Safe Ant, and Safe HalfCheetah in terms of cost (the first row) and reward (the second row). The  safety constraint  values are: 15 for ManyAgent Ant, 0.2 for Ant, and 5 for HalfCheetah. Our methods consistently achieve almost zero costs, thus satisfying safe constraints,  on all tasks. In terms of reward, our methods outperform <a href="https://arxiv.org/abs/2011.09533)">IPPO</a> and <a href="https://arxiv.org/abs/2103.01955">MAPPO</a> on some tasks  but  underperform  <a href="https://arxiv.org/abs/2109.11251">HAPPO</a>, which  is also an unsafe algorithm.</center>
 </div>
 
 
