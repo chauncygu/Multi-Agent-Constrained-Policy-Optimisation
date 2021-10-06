@@ -55,9 +55,9 @@ chmod +x ./train_mujoco.sh
 ## 3. Results
 
 <div align=center>
-<img src="https://github.com/anybodyany/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/ManyAgent_Ant_results.png" width="850"/>    
-<img src="https://github.com/anybodyany/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/Ant_results.png" width="850"/> 
-<img src="https://github.com/anybodyany/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/HalfCheetah_results.png" width="850"/>
+<img src="https://github.com/anybodyany/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/New_ManyAgent_Ant_results.png" width="850"/>    
+<img src="https://github.com/anybodyany/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/New_Ant_results.png" width="850"/> 
+<img src="https://github.com/anybodyany/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/New_HalfCheetah_results.png" width="850"/>
 </div>
     
 <div align=center>
