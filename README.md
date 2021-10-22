@@ -65,6 +65,17 @@ chmod +x ./train_mujoco.sh
     Performance comparisons on tasks of Safe ManyAgent Ant, Safe Ant, and Safe HalfCheetah in terms of cost (the first row) and reward (the second row). The  safety constraint  values are: 15 for ManyAgent Ant, 0.2 for Ant, and 5 for HalfCheetah. Our methods consistently achieve almost zero costs, thus satisfying safe constraints,  on all tasks. In terms of reward, our methods outperform <a href="https://arxiv.org/abs/2011.09533)">IPPO</a> and <a href="https://arxiv.org/abs/2103.01955">MAPPO</a> on some tasks  but  underperform  <a href="https://arxiv.org/abs/2109.11251">HAPPO</a>, which  is also an unsafe algorithm.</center>
 </div>
 
+## 4. Publication
+If you use the repository, please cite the [paper](https://arxiv.org/abs/2110.02793):
+```
+@article{gu2021multi,
+  title={Multi-Agent Constrained Policy Optimisation},
+  author={Gu, Shangding and Kuba, Jakub Grudzien and Wen, Munning and Chen, Ruiqing and Wang, Ziyan and Tian, Zheng and Wang, Jun and Knoll, Alois and Yang, Yaodong},
+  journal={arXiv preprint arXiv:2110.02793},
+  year={2021}
+}
+```
+
 
 # Acknowledgments
 
