@@ -66,7 +66,7 @@ chmod +x ./train_mujoco.sh
 </div>
 
 ## 4. Publication
-If you use the repository, please cite the [paper](https://arxiv.org/abs/2110.02793):
+If you find the repository useful, please cite the [paper](https://arxiv.org/abs/2110.02793):
 ```
 @article{gu2021multi,
   title={Multi-Agent Constrained Policy Optimisation},
