@@ -14,7 +14,7 @@ setup(
     name="mappo_lagrangian",  # Replace with your own username
     version=get_version(),
     description="mappo_lagrangian algorithms of marlbenchmark",
-    long_description=open("README.md", encoding="utf8").read(),
+    # long_description=open("README.md", encoding="utf8").read(),
     long_description_content_type="text/markdown",
     author="marl",
     author_email="marl@gmail.com",
