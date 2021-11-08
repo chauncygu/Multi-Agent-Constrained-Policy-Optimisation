@@ -73,7 +73,7 @@ chmod +x ./train_mujoco.sh
     
 <div align=center>
 <center style="color:#000000;text-decoration:underline">
-    A demo denotes <b>unsafe</b> performance using HAPPO on Ant2x4 task.</center>
+    A demo denotes <b>unsafe</b> performance using <a href="https://arxiv.org/abs/2109.11251">HAPPO</a> on Ant2x4 task.</center>
 </div>
 
 <div align=center>
@@ -82,7 +82,7 @@ chmod +x ./train_mujoco.sh
     
 <div align=center>
 <center style="color:#000000;text-decoration:underline">
-    A demo denotes <b>safe</b> performance using MAPPO-Lagrangian on Ant2x4 task.</center>
+    A demo denotes <b>safe</b> performance using <a href="http://arxiv.org/abs/2110.02793">MAPPO-Lagrangian</a> on Ant2x4 task.</center>
 </div>
 
 ## 5. Publication
