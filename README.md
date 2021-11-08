@@ -78,7 +78,7 @@ If you find the repository useful, please cite the [paper](https://arxiv.org/abs
 
 ## 4. Demos
 <div align=center>
-<img src="https://github.com/chauncygu/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/sadppo_end_training.gif" width="850"/>    
+<img src="https://github.com/chauncygu/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/sadppo_end_training.gif" width="700"/>    
 </div>
     
 <div align=center>
@@ -87,7 +87,7 @@ If you find the repository useful, please cite the [paper](https://arxiv.org/abs
 </div>
 
 <div align=center>
-<img src="https://github.com/chauncygu/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/safe_mappo_end_training.gif" width="850"/>    
+<img src="https://github.com/chauncygu/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/safe_mappo_end_training.gif" width="700"/>    
 </div>
     
 <div align=center>
