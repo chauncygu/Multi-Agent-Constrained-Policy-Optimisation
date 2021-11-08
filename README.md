@@ -65,7 +65,27 @@ chmod +x ./train_mujoco.sh
     Performance comparisons on tasks of Safe ManyAgent Ant, Safe Ant, and Safe HalfCheetah in terms of cost (the first row) and reward (the second row). The  safety constraint  values are: 15 for ManyAgent Ant, 0.2 for Ant, and 5 for HalfCheetah. Our methods consistently achieve almost zero costs, thus satisfying safe constraints,  on all tasks. In terms of reward, our methods outperform <a href="https://arxiv.org/abs/2011.09533)">IPPO</a> and <a href="https://arxiv.org/abs/2103.01955">MAPPO</a> on some tasks  but  underperform  <a href="https://arxiv.org/abs/2109.11251">HAPPO</a>, which  is also an unsafe algorithm.</center>
 </div>
 
-## 4. Publication
+
+## 4. Demos
+<div align=center>
+<img src="https://github.com/chauncygu/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/sadppo_end_training.gif" width="700"/>    
+</div>
+    
+<div align=center>
+<center style="color:#000000;text-decoration:underline">
+    A demo denotes <b>unsafe</b> performance using HAPPO on Ant2x4 task.</center>
+</div>
+
+<div align=center>
+<img src="https://github.com/chauncygu/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/safe_mappo_end_training.gif" width="700"/>    
+</div>
+    
+<div align=center>
+<center style="color:#000000;text-decoration:underline">
+    A demo denotes <b>safe</b> performance using MAPPO-Lagrangian on Ant2x4 task.</center>
+</div>
+
+## 5. Publication
 If you find the repository useful, please cite the [paper](https://arxiv.org/abs/2110.02793):
 ```
 @article{gu2021multi,
@@ -75,26 +95,6 @@ If you find the repository useful, please cite the [paper](https://arxiv.org/abs
   year={2021}
 }
 ```
-
-## 4. Demos
-<div align=center>
-<img src="https://github.com/chauncygu/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/sadppo_end_training.gif" width="700"/>    
-</div>
-    
-<div align=center>
-<center style="color:#000000;text-decoration:underline">
-    Unsafe demo using HAPPO on Ant2x4 task.</center>
-</div>
-
-<div align=center>
-<img src="https://github.com/chauncygu/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/safe_mappo_end_training.gif" width="700"/>    
-</div>
-    
-<div align=center>
-<center style="color:#000000;text-decoration:underline">
-    Safe demo using MAPPO-Lagrangian on Ant2x4 task.</center>
-</div>
-
 
 
 # Acknowledgments
