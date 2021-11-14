@@ -68,7 +68,7 @@ chmod +x ./train_mujoco.sh
 
 ## 4. Demos
 <div align=center>
-<img src="https://github.com/chauncygu/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/sadppo_end_training.gif" width="700"/>    
+<img src="https://github.com/chauncygu/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/202111071600-unsafe-end%2000_00_00-00_00_30.gif" width="700"/>    
 </div>
     
 <div align=center>
@@ -77,7 +77,7 @@ chmod +x ./train_mujoco.sh
 </div>
 
 <div align=center>
-<img src="https://github.com/chauncygu/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/safe_mappo_end_training.gif" width="700"/>    
+<img src="https://github.com/chauncygu/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/202111140948-safe-end%2000_00_00-00_00_30.gif" width="700"/>    
 </div>
     
 <div align=center>
