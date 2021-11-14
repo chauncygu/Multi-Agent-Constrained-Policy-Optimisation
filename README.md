@@ -76,6 +76,7 @@ chmod +x ./train_mujoco.sh
     A demo denotes <b>unsafe</b> performance using <a href="https://arxiv.org/abs/2109.11251">HAPPO</a> on Ant2x4 task.</center>
 </div>
 
+&nbsp;
 <div align=center>
 <img src="https://github.com/chauncygu/Multi-Agent-Constrained-Policy-Optimisation/blob/main/figures/202111140948-safe-end1%2000_00_00-00_00_30.gif" width="700"/>    
 </div>
