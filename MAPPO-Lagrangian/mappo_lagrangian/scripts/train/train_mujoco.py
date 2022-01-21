@@ -172,7 +172,7 @@ def main(args):
 
     # run experiments
     if all_args.share_policy:
-        from onpolicy.runner.shared.mujoco_runner import MujocoRunner as Runner
+        from mappo_lagrangian.runner.shared.mujoco_runner import MujocoRunner as Runner
     else:
         #in origin code not implement this method
         if all_args.algorithm_name == "mappo_lagr":
