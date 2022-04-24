@@ -19,8 +19,6 @@ from macpo.config import get_config
 from macpo.envs.safety_ma_mujoco.safety_multiagent_mujoco import MujocoMulti
 from macpo.envs.env_wrappers import ShareSubprocVecEnv, ShareDummyVecEnv
 
-"""Train script for SMAC."""
-
 
 def make_train_env(all_args):
     def get_env_fn(rank):
