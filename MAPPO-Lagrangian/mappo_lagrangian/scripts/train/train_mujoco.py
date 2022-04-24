@@ -19,8 +19,6 @@ from mappo_lagrangian.config import get_config
 from mappo_lagrangian.envs.safety_ma_mujoco.safety_multiagent_mujoco import MujocoMulti
 from mappo_lagrangian.envs.env_wrappers import ShareSubprocVecEnv, ShareDummyVecEnv
 
-"""Train script for SMAC."""
-
 
 def make_train_env(all_args):
     def get_env_fn(rank):
