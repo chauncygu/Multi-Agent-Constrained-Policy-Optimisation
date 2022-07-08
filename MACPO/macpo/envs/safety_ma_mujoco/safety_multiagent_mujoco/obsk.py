@@ -227,6 +227,11 @@ def get_parts_and_edges(label, partitioning):
                      (hip2, ankle2),
                      (hip3, ankle3),
                      (hip4, ankle4)]
+        elif partitioning == "8x1":
+            parts = [(hip1,), (ankle1,),
+                     (hip2,), (ankle2,),
+                     (hip3,), (ankle3,),
+                     (hip4,), (ankle4,)]
         else:
             raise Exception("UNKNOWN partitioning config: {}".format(partitioning))
 
