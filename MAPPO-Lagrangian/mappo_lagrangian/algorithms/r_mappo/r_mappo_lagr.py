@@ -239,7 +239,7 @@ class R_MAPPO_Lagr:
                                                                                            rnn_states_cost_batch)
 
         # todo: lagrangian coef
-        adv_targ_hybrid = factor_batch * (adv_targ - self.lamda_lagr*cost_adv_targ) 
+        adv_targ_hybrid = factor_batch * adv_targ - self.lamda_lagr*cost_adv_targ
 
         # todo: lagrangian actor update step
         # actor update
