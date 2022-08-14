@@ -5,7 +5,7 @@ from macpo.utils.util import update_linear_schedule
 
 class MACPPOPolicy:
     """
-    MAPPO Policy  class. Wraps actor and critic networks to compute actions and value function predictions.
+    MACPO Policy  class. Wraps actor and critic networks to compute actions and value function predictions.
 
     :param args: (argparse.Namespace) arguments containing relevant model and policy information.
     :param obs_space: (gym.Space) observation space.
@@ -128,20 +128,7 @@ class MACPPOPolicy:
         :return dist_entropy: (torch.Tensor) action distribution entropy for the given inputs.
         """
 
-        # todo: for mappo and matrpo, etc(not consider safe rl)
-        # if rnn_states_cost is None:
-        #     action_log_probs, dist_entropy = self.actor.evaluate_actions(obs,
-        #                                                                  rnn_states_actor,
-        #                                                                  action,
-        #                                                                  masks,
-        #                                                                  available_actions,
-        #                                                                  active_masks)
-        #
-        #     values, _ = self.critic(cent_obs, rnn_states_critic, masks)
-        #     return values, action_log_probs, dist_entropy
-
-        # else:
-        # print("rnn_states_cost", rnn_states_cost)
+        
 
         if self.args.algorithm_name == "macpo": # todo: for mactrpo
             action_log_probs, dist_entropy, action_mu, action_std = self.actor.evaluate_actions(obs,
