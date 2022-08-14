@@ -7,7 +7,7 @@ from mappo_lagrangian.algorithms.utils.util import check
 
 class R_MAPPO_Lagr:
     """
-    Trainer class for MAPPO to update policies.
+    Trainer class for MAPPO-L to update policies.
     :param args: (argparse.Namespace) arguments containing relevant model, policy, and env information.
     :param policy: (R_MAPPO_Policy) policy to update.
     :param device: (torch.device) specifies the device to run on (cpu/gpu).
@@ -71,6 +71,7 @@ class R_MAPPO_Lagr:
 
         self.lagrangian_coef = args.lagrangian_coef_rate # lagrangian_coef
         self.lamda_lagr = args.lamda_lagr # 0.78
+        self.safety_bound = args.safety_bound # 0.2 Ant
 
 
 
@@ -239,7 +240,7 @@ class R_MAPPO_Lagr:
                                                                                            rnn_states_cost_batch)
 
         # todo: lagrangian coef
-        adv_targ_hybrid = factor_batch * adv_targ - self.lamda_lagr*cost_adv_targ
+        adv_targ_hybrid = adv_targ - self.lamda_lagr*cost_adv_targ
 
         # todo: lagrangian actor update step
         # actor update
@@ -270,7 +271,7 @@ class R_MAPPO_Lagr:
         self.policy.actor_optimizer.step()
 
         # todo: update lamda_lagr
-        delta_lamda_lagr = -((value_preds_batch - cost_values) * (1 - self.gamma) + (imp_weights * cost_adv_targ)).mean().detach()
+        delta_lamda_lagr = -((cost_values - self.safety_bound) * (1 - self.gamma) + (imp_weights * cost_adv_targ)).mean().detach()
 
         R_Relu = torch.nn.ReLU()
         new_lamda_lagr = R_Relu(self.lamda_lagr - (delta_lamda_lagr * self.lagrangian_coef))
