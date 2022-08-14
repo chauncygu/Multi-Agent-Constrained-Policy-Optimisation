@@ -13,7 +13,7 @@ import copy
 
 class R_MACTRPO_CPO():
     """
-    Trainer class for MATRPO to update policies.
+    Trainer class for MACPO to update policies.
     :param args: (argparse.Namespace) arguments containing relevant model, policy, and env information.
     :param policy: (R_MAPPO_Policy) policy to update.
     :param device: (torch.device) specifies the device to run on (cpu/gpu).
@@ -420,7 +420,7 @@ class R_MACTRPO_CPO():
             positive_Cauchy_value = torch.tensor(0)
             whether_recover_policy_value = torch.tensor(0)
             optim_case = 4
-            # print("optim_case = 4---shortcut to pure TRPO update!")
+          
         else:
             # cost grad is nonzero: CPO update!
             r_coef = (reward_loss_grad * b_step_dir).sum(0, keepdim=True)  # todo: compute r_coef: = g^T H^{-1} b
@@ -438,22 +438,22 @@ class R_MACTRPO_CPO():
                 # point in trust region is feasible and safety boundary doesn't intersect
                 # ==> entire trust region is feasible
                 optim_case = 3
-                # print("optim_case = 3---entire trust region is feasible")
+              
             elif rescale_constraint_val < 0 and whether_recover_policy_value >= 0:
                 # x = 0 is feasible and safety boundary intersects
                 # ==> most of trust region is feasible
                 optim_case = 2
-                # print('optim_case = 2---most of trust region is feasible')
+                
             elif rescale_constraint_val >= 0 and whether_recover_policy_value >= 0:
                 # x = 0 is infeasible and safety boundary intersects
                 # ==> part of trust region is feasible, recovery possible
                 optim_case = 1
-                # print('optim_case = 1---Alert! Attempting feasible recovery!')
+               
             else:
                 # x = 0 infeasible, and safety halfspace is outside trust region
                 # ==> whole trust region is infeasible, try to fail gracefully
                 optim_case = 0
-                # print('optim_case = 0---Alert! Attempting infeasible recovery!')
+                
         if whether_recover_policy_value == 0:
             whether_recover_policy_value = self.EPS
         
@@ -662,79 +662,5 @@ class R_MACTRPO_CPO():
         self.policy.actor.eval()
         self.policy.critic.eval()
 
-    """
-    B_cost_loss_grad_dot = torch.dot(B_cost_loss_grad, B_cost_loss_grad)
-    if torch.dot(B_cost_loss_grad, B_cost_loss_grad) <= 1e-8 and rescale_constraint_val < 0:
-        b_step_dir, r_coef, s_coef, A, B = 0, 0, 0, 0, 0
-        optim_case = 4
-
-    else:
-        A = q_coef - r_coef**2/s_coef
-        B = self._max_quad_constraint_val - (rescale_constraint_val ** 2) / (s_coef+ self.EPS)
-        positive_Cauchy_value = A
-        whether_recover_policy_value = B
-        if rescale_constraint_val<0 and B<0:
-            optim_case = 3
-
-        elif rescale_constraint_val < 0 and B >= 0:
-            optim_case = 2
-
-        elif rescale_constraint_val >= 0 and B >= 0:
-            optim_case = 1
-
-        else:
-            optim_case = 0
-        if A==0:
-            A = self.EPS
-        if B==0:
-            B = self.EPS
-
-    lam, nu = 0, 0
-    if optim_case == 0:  # need to recover policy from unfeasible point
-        recover_policy_flag = True
-        lam = 0
-        nu = torch.sqrt(2 * self.kl_threshold / (s_coef + self.EPS) )
-
-    elif optim_case in [1, 2]:
-        lamda_a = torch.sqrt(A/B)
-        lamda_A_1 = r_coef / rescale_constraint_val
-        lamda_A_2 = torch.tensor(0)
-        lamda_b = torch.sqrt(q_coef / (2 * self._max_quad_constraint_val))
-        if rescale_constraint_val > 0:
-            lamda_coef_1 = torch.max(lamda_A_1, lamda_a)  # assume lamda*c - r >0
-            lamda_coef_2 = torch.max(lamda_A_2, torch.min(lamda_b, lamda_A_1))  # assume lamda*c - r < 0
-            if (lamda_coef_1 * rescale_constraint_val - r_coef) > 0:  # assume lamda*c - r >0 successfully
-                self.lamda_coef_a_star = lamda_coef_1
-            else:  # assume failed
-                self.lamda_coef_b_star = lamda_coef_2
-        else:
-            lamda_coef_3 = torch.max(lamda_A_2, torch.min(lamda_a, lamda_A_1))  # assume lamda*c - r >0
-            lamda_coef_4 = torch.max(lamda_b, lamda_A_1)  # assume lamda*c - r < 0
-            # print("lamda_coef_3 * rescale_constraint_val - r_coef ",
-            # lamda_coef_3 * rescale_constraint_val - r_coef)
-            if lamda_coef_3 * rescale_constraint_val - r_coef > 0:
-                self.lamda_coef_a_star = lamda_coef_3
-            else:
-                self.lamda_coef_b_star = lamda_coef_4
-        if self.lamda_coef_b_star==0:
-            self.lamda_coef_b_star = self.EPS
-        if self.lamda_coef_a_star==0:
-            self.lamda_coef_a_star = self.EPS
-        if s_coef==0:
-            s_coef = self.EPS
-        f_a_star = -A/(2*self.lamda_coef_a_star +  self.EPS) - self.lamda_coef_a_star*B/2 - r_coef*rescale_constraint_val/(s_coef+ self.EPS)
-        f_b_star = -(self._max_quad_constraint_val/(self.lamda_coef_b_star+ self.EPS) \
-                    + self.lamda_coef_b_star*self._max_quad_constraint_val)/2
-
-        if f_a_star > f_b_star:
-            lam = self.lamda_coef_a_star
-        else:
-            lam = self.lamda_coef_b_star
-
-        nu = torch.relu( (lam*rescale_constraint_val - r_coef)/(s_coef + self.EPS) )
-
-    elif optim_case in [3, 4]:
-        lam = torch.sqrt(q_coef/(2*self._max_quad_constraint_val))
-        nu = 0.
-    """
+   
 
