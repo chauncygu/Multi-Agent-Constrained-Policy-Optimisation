@@ -10,7 +10,7 @@ from macpo.utils.util import get_shape_from_obs_space
 
 class R_Actor(nn.Module):
     """
-    Actor network class for MAPPO. Outputs actions given observations.
+    Actor network class for MACPO. Outputs actions given observations.
     :param args: (argparse.Namespace) arguments containing relevant model information.
     :param obs_space: (gym.Space) observation space.
     :param action_space: (gym.Space) action space.
