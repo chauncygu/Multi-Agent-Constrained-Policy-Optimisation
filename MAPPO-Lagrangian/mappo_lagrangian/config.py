@@ -293,6 +293,6 @@ def get_config():
     parser.add_argument("--model_dir", type=str, default=None, help="by default None. set the path to pretrained model.")
 
     # safe parameters
-    parser.add_argument("--safty_bound", type=float, default=1, help="constraint upper bound")
+    parser.add_argument("--safety_bound", type=float, default=1, help="constraint upper bound")
 
     return parser
