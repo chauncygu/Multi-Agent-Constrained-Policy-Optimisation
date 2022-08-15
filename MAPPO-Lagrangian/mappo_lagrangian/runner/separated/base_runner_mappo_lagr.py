@@ -48,7 +48,7 @@ class Runner(object):
         self.gamma = self.all_args.gamma
         self.use_popart = self.all_args.use_popart
 
-        self.safty_bound = self.all_args.safty_bound
+        self.safety_bound = self.all_args.safety_bound
 
         # dir
         self.model_dir = self.all_args.model_dir
@@ -203,9 +203,9 @@ class Runner(object):
 
         del_id = []
         print("===================================================")
-        print("safety_bound: ", self.safty_bound)
+        print("safety_bound: ", self.safety_bound)
         for i in range(self.n_rollout_threads):
-            if constraints_value[i][0] > self.safty_bound:
+            if constraints_value[i][0] > self.safety_bound:
                 del_id.append(i)
 
         buffer_filterd = self.remove_episodes(agent_id, del_id)
@@ -236,30 +236,7 @@ class Runner(object):
             buffer.factor = (buffer.factor, del_ids, 1)
         return buffer
 
-    # def remove_episodes(self, agent_id, del_ids):
-    #     buffer = copy.deepcopy(self.buffer[agent_id])
-    #     buffer.share_obs = np.delete(buffer.share_obs, del_ids, 1)
-    #     buffer.obs = np.delete(buffer.obs, del_ids, 1)
-    #     buffer.rnn_states = np.delete(buffer.rnn_states, del_ids, 1)
-    #     buffer.rnn_states_critic = np.delete(buffer.rnn_states_critic, del_ids, 1)
-    #     buffer.rnn_states_cost = np.delete(buffer.rnn_states_cost, del_ids, 1)
-    #     buffer.value_preds = np.delete(buffer.value_preds, del_ids, 1)
-    #     buffer.returns = np.delete(buffer.returns, del_ids, 1)
-    #     if buffer.available_actions is not None:
-    #         buffer.available_actions = np.delete(buffer.available_actions, del_ids, 1)
-    #     buffer.actions = np.delete(buffer.actions, del_ids, 1)
-    #     buffer.action_log_probs = np.delete(buffer.action_log_probs, del_ids, 1)
-    #     buffer.rewards = np.delete(buffer.rewards, del_ids, 1)
-    #     # todo: cost should be calculated entirely
-    #     buffer.costs = np.delete(buffer.costs, del_ids, 1)
-    #     buffer.cost_preds = np.delete(buffer.cost_preds, del_ids, 1)
-    #     buffer.cost_returns = np.delete(buffer.cost_returns, del_ids, 1)
-    #     buffer.masks = np.delete(buffer.masks, del_ids, 1)
-    #     buffer.bad_masks = np.delete(buffer.bad_masks, del_ids, 1)
-    #     buffer.active_masks = np.delete(buffer.active_masks, del_ids, 1)
-    #     if buffer.factor is not None:
-    #         buffer.factor = np.delete(buffer.factor, del_ids, 1)
-    #     return buffer
+   
 
     def save(self):
         for agent_id in range(self.num_agents):
