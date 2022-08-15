@@ -338,7 +338,7 @@ class R_MAPPO_Lagr:
         train_info['ratio'] = 0
         train_info['cost_grad_norm'] = 0
         train_info['cost_loss'] = 0
-        self.lamda_lagr = 0.78
+        
         for _ in range(self.ppo_epoch):
             if self._use_naive_recurrent:
                 data_generator = buffer.naive_recurrent_generator(advantages, self.num_mini_batch, cost_adv)
