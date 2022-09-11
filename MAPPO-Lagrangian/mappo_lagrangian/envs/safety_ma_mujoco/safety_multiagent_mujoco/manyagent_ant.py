@@ -124,8 +124,7 @@ class ManyAgentAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
 
         done = not notdone
         # print("done", done)
-        print("y_walldist", y_walldist)
-        print("obj_cost", obj_cost)
+     
         #ADDED
         done_cost = done * 1.0
         cost = np.clip(obj_cost + done_cost, 0, 1)
