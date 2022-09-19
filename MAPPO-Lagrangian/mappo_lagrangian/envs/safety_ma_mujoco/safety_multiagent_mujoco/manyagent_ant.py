@@ -122,14 +122,12 @@ class ManyAgentAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
             and state[2] >= 0.2 and state[2] <= 1.0\
             and z_rot>=-0.7 #ADDED
 
-        done = not notdone
-        # print("done", done)
+        done = not notdone       
      
         #ADDED
         done_cost = done * 1.0
         cost = np.clip(obj_cost + done_cost, 0, 1)
-        # print("reward", reward)
-        # print("cost-manyagent_ant.py",cost)
+        
         ob = self._get_obs()
         if self.rflag == 0:
             self.rflag += 1
