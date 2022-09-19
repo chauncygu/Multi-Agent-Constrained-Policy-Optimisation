@@ -100,7 +100,7 @@ class ManyAgentAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
 
         ### ADDED safety stuff
         yposafter = self.get_body_com("torso_0")[1]
-        ywall = np.array([-2.3, 2.3])
+        ywall = np.array([-4.5, 4.5])
         if xposafter < 20:
             y_walldist = yposafter - xposafter * np.tan(30 / 360 * 2 * np.pi) + ywall
         elif xposafter>20 and xposafter<60:
