@@ -55,10 +55,9 @@ class MujocoRunner(Runner):
                         done_episodes_costs.append(train_episode_costs[t])
                         train_episode_costs[t] = 0
 
-
                 data = obs, share_obs, rewards, costs, dones, infos, \
                        values, actions, action_log_probs, \
-                       rnn_states, rnn_states_critic,  cost_preds, rnn_states_cost  # fixme: it's important!!!
+                       rnn_states, rnn_states_critic, cost_preds, rnn_states_cost  # fixme: it's important!!!
 
                 # insert data into buffer
                 self.insert(data)
@@ -91,6 +90,7 @@ class MujocoRunner(Runner):
                 if len(done_episodes_rewards) > 0:
                     aver_episode_rewards = np.mean(done_episodes_rewards)
                     aver_episode_costs = np.mean(done_episodes_costs)
+                    self.return_aver_cost(aver_episode_costs)
                     print("some episodes done, average rewards: {}, average costs: {}".format(aver_episode_rewards,
                                                                                               aver_episode_costs))
                     self.writter.add_scalars("train_episode_rewards", {"aver_rewards": aver_episode_rewards},
@@ -101,6 +101,10 @@ class MujocoRunner(Runner):
             # eval
             if episode % self.eval_interval == 0 and self.use_eval:
                 self.eval(total_num_steps)
+
+    def return_aver_cost(self, aver_episode_costs):
+        for agent_id in range(self.num_agents):
+            self.buffer[agent_id].return_aver_insert(aver_episode_costs)
 
     def warmup(self):
         # reset env
@@ -157,7 +161,7 @@ class MujocoRunner(Runner):
 
     def insert(self, data):
         obs, share_obs, rewards, costs, dones, infos, \
-        values, actions, action_log_probs, rnn_states, rnn_states_critic, cost_preds, rnn_states_cost = data # fixme:!!!
+        values, actions, action_log_probs, rnn_states, rnn_states_critic, cost_preds, rnn_states_cost = data  # fixme:!!!
         # print("insert--rewards", rewards)
         dones_env = np.all(dones, axis=1)
 
@@ -184,7 +188,7 @@ class MujocoRunner(Runner):
                                          rnn_states_critic[:, agent_id], actions[:, agent_id],
                                          action_log_probs[:, agent_id],
                                          values[:, agent_id], rewards[:, agent_id], masks[:, agent_id], None,
-                                         active_masks[:, agent_id],  None, costs=costs[:, agent_id],
+                                         active_masks[:, agent_id], None, costs=costs[:, agent_id],
                                          cost_preds=cost_preds[:, agent_id],
                                          rnn_states_cost=rnn_states_cost[:, agent_id])
 
@@ -192,7 +196,7 @@ class MujocoRunner(Runner):
         print("average_step_rewards is {}.".format(np.mean(self.buffer[0].rewards)))
         train_infos[0][0]["average_step_rewards"] = 0
         for agent_id in range(self.num_agents):
-            train_infos[0][agent_id]["average_step_rewards"]= np.mean(self.buffer[agent_id].rewards)
+            train_infos[0][agent_id]["average_step_rewards"] = np.mean(self.buffer[agent_id].rewards)
             for k, v in train_infos[0][agent_id].items():
                 agent_k = "agent%i/" % agent_id + k
                 if self.use_wandb:
